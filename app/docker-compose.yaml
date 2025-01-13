@@ -1,4 +1,4 @@
-version: '3'   
+version: "3"   
 
 services:
     db:
@@ -14,7 +14,7 @@ services:
       ports:
         - "5432:5432"
       networks: 
-        - observability
+        - elastic
 
     pgadmin:
       image: dpage/pgadmin4
@@ -26,7 +26,7 @@ services:
       ports:
         - "9001:80"
       networks: 
-        - observability
+        - elastic
     
     app:
       build: .
@@ -39,7 +39,7 @@ services:
       depends_on:
         - db
       networks: 
-        - observability
+        - elastic
     
     nginx:
       build: ../nginx
@@ -47,8 +47,8 @@ services:
       ports:
         - "8280:80"
       networks: 
-        - observability
+        - elastic
 
 networks:
-  observability:
+  elastic:
     external: true     
